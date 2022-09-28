@@ -11,6 +11,62 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 import 'items/e_commerce_item.dart';
 
+List<ProductItem> products = [
+  ProductItem(
+    uid: 1,
+    title: "PS5 Controller",
+    amount: 75,
+    image: "images/ps5.png",
+  ),
+  ProductItem(
+    uid: 2,
+    title: "Drone",
+    amount: 155,
+    image: "images/drone.png",
+  ),
+  ProductItem(
+    uid: 3,
+    title: "Beats Studio",
+    amount: 230,
+    image: "images/beats.png",
+  ),
+  ProductItem(
+    uid: 4,
+    title: "Alexa",
+    amount: 45,
+    image: "images/alexa.png",
+  ),
+  ProductItem(
+    uid: 5,
+    title: "Nintendo Switch",
+    amount: 298,
+    image: "images/switch.png",
+  ),
+  ProductItem(
+    uid: 6,
+    title: "Apple Watch",
+    amount: 165,
+    image: "images/watch.png",
+  ),
+  ProductItem(
+    uid: 7,
+    title: "Macbook",
+    amount: 1950,
+    image: "images/mac.png",
+  ),
+  ProductItem(
+    uid: 8,
+    title: "Iphone",
+    amount: 1200,
+    image: "images/iphone.png",
+  ),
+];
+
+
+List displayList = [];
+
+
+
 class ECommerceItems extends StatefulWidget {
   const ECommerceItems({
     Key key,
@@ -21,6 +77,16 @@ class ECommerceItems extends StatefulWidget {
 }
 
 class _ECommerceItemsState extends State<ECommerceItems> {
+
+  @override
+  void initState() {
+
+      displayList = products;
+    
+    super.initState();
+  }
+
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -54,7 +120,11 @@ class _ECommerceItemsState extends State<ECommerceItems> {
                       margin: const EdgeInsets.symmetric(
                           horizontal: kPadding, vertical: 4),
                       child: TextField(
-                        onChanged: (value) {},
+                        onChanged: (value) {
+
+                          _searchedItem(value);
+
+                        },
                         decoration: InputDecoration(
                           hintText: "Search",
                           fillColor: Colors.white.withOpacity(0.5),
@@ -98,7 +168,7 @@ class _ECommerceItemsState extends State<ECommerceItems> {
                   padding: const EdgeInsets.symmetric(horizontal: kPadding),
                   child: GridView.builder(
                     padding: EdgeInsets.symmetric(horizontal: kPadding),
-                    itemCount: products.length,
+                    itemCount: displayList.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: kPadding,
@@ -109,7 +179,7 @@ class _ECommerceItemsState extends State<ECommerceItems> {
                       /*  selected: ResponsiveLayout.isIphone(context)
                           ? false
                           : index == 0, */
-                      item: products[index],
+                      item: displayList[index],
                       onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -126,4 +196,36 @@ class _ECommerceItemsState extends State<ECommerceItems> {
       ),
     );
   }
+
+void _searchedItem(String value) {
+
+
+if (value.isNotEmpty){
+
+final newList = products.where((element) {
+
+  return element.title.substring(0,1).toLowerCase() == value.substring(0,1);
+
+}).toList();
+
+
+setState(() {
+  displayList = newList;
+});
+
+
+}else {
+
+setState(() {
+  displayList = products;
+});
+
+}
+
+
+
+
+
+}
+
 }
