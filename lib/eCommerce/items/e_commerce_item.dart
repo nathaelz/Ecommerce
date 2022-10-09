@@ -22,7 +22,6 @@ class ECommerceItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Expanded(
-            
               child: Container(
             padding: EdgeInsets.all(kPadding),
             height: 180,
@@ -41,8 +40,8 @@ class ECommerceItem extends StatelessWidget {
               ],
             ),
             child: Hero(
-              tag: "${item.uid}",
-              child: Image.asset(
+              tag: "${item.id}",
+              child: Image.network(
                 item.image,
                 fit: BoxFit.contain,
               ),
@@ -51,15 +50,17 @@ class ECommerceItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: kPadding / 4),
             child: Text(
-              item.title,
+              item.name,
               style: TextStyle(color: Colors.black.withOpacity(0.5)),
             ),
           ),
           Text(
-            "\$ ${item.amount}",
+            "\$ ${item.price}",
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: kPadding/2,)
+          SizedBox(
+            height: kPadding / 2,
+          )
         ],
       ),
     );
