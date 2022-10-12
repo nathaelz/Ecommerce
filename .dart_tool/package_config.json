@@ -98,6 +98,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_stripe",
+      "rootUri": "file:///Users/winstonflorentino/flutterDev/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_stripe-5.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
       "name": "flutter_svg",
       "rootUri": "file:///Users/winstonflorentino/flutterDev/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-0.19.3",
       "packageUri": "lib/",
@@ -114,6 +120,12 @@
       "rootUri": "file:///Users/winstonflorentino/flutterDev/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "2.17"
+    },
+    {
+      "name": "freezed_annotation",
+      "rootUri": "file:///Users/winstonflorentino/flutterDev/flutter/.pub-cache/hosted/pub.dartlang.org/freezed_annotation-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
     },
     {
       "name": "google_fonts",
@@ -138,6 +150,12 @@
       "rootUri": "file:///Users/winstonflorentino/flutterDev/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.4",
       "packageUri": "lib/",
       "languageVersion": "2.16"
+    },
+    {
+      "name": "json_annotation",
+      "rootUri": "file:///Users/winstonflorentino/flutterDev/flutter/.pub-cache/hosted/pub.dartlang.org/json_annotation-4.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
     },
     {
       "name": "logging",
@@ -344,6 +362,24 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "stripe_android",
+      "rootUri": "file:///Users/winstonflorentino/flutterDev/flutter/.pub-cache/hosted/pub.dartlang.org/stripe_android-5.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "stripe_ios",
+      "rootUri": "file:///Users/winstonflorentino/flutterDev/flutter/.pub-cache/hosted/pub.dartlang.org/stripe_ios-5.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "stripe_platform_interface",
+      "rootUri": "file:///Users/winstonflorentino/flutterDev/flutter/.pub-cache/hosted/pub.dartlang.org/stripe_platform_interface-5.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
       "name": "term_glyph",
       "rootUri": "file:///Users/winstonflorentino/flutterDev/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.2.1",
       "packageUri": "lib/",
@@ -458,7 +494,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2022-10-12T21:31:21.737908Z",
+  "generated": "2022-10-12T21:45:48.230871Z",
   "generator": "pub",
   "generatorVersion": "2.18.2"
 }

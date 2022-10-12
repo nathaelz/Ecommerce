@@ -62,7 +62,7 @@ class _TopBarDescriptionState extends State<TopBarDescription> {
                 List listOfIndexCartFromShareP =
                     await UserPreferences.readCartCount();
 
-                listOfIndexcart = List.from([listOfIndexCartFromShareP]);
+                listOfIndexcart = List.from(listOfIndexCartFromShareP);
                 listOfIndexcart.add(appProvider.item.id);
                 await UserPreferences.setCartCount(
                     <String>[...listOfIndexcart]);
