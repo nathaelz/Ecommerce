@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../k_padding.dart';
 import '../../responsive.dart';
+import '../app_provider.dart';
+import '../services/shared_preferences.dart';
 
-class TopBarDescription extends StatelessWidget {
+class TopBarDescription extends StatefulWidget {
   //The Top Bar over the description page
   const TopBarDescription({
     Key key,
   }) : super(key: key);
 
   @override
+  State<TopBarDescription> createState() => _TopBarDescriptionState();
+}
+
+class _TopBarDescriptionState extends State<TopBarDescription> {
+  @override
   Widget build(BuildContext context) {
+    List<String> listOfIndexcart = [];
+
+    final appProvider = Provider.of<AppProvider>(context, listen: true);
     return Padding(
       padding: const EdgeInsets.all(kPadding),
       child: Row(
         children: [
-         /*  if (ResponsiveLayout.isIphone(context)) BackButton(),
+          /*  if (ResponsiveLayout.isIphone(context)) BackButton(),
           if (ResponsiveLayout.isMacbook(context))
             IconButton(
               icon: Icon(
@@ -47,7 +58,15 @@ class TopBarDescription extends StatelessWidget {
                 "Add to Cart",
                 style: TextStyle(color: Colors.black.withOpacity(0.8)),
               ),
-              onPressed: () {},
+              onPressed: () async {
+                List listOfIndexCartFromShareP =
+                    await UserPreferences.readCartCount();
+
+                listOfIndexcart = List.from([...listOfIndexCartFromShareP]);
+                listOfIndexcart.add(appProvider.item.id);
+                await UserPreferences.setCartCount(
+                    <String>[...listOfIndexcart]);
+              },
             ),
           ),
           SizedBox(width: kPadding),

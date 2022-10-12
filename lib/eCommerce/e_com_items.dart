@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sellar_e_commerce/eCommerce/app_provider.dart';
 import 'package:sellar_e_commerce/eCommerce/e_com_drawer.dart';
 import 'package:sellar_e_commerce/eCommerce/e_com_item_description.dart';
 import 'package:sellar_e_commerce/eCommerce/services/service.dart';
@@ -66,6 +67,8 @@ List<ProductItem> products = [
 
 List displayList = [];
 String newValue = '';
+AppProvider appProvider;
+ProductItem firstItem = ProductItem();
 
 class ECommerceItems extends StatefulWidget {
   const ECommerceItems({
@@ -80,16 +83,20 @@ class _ECommerceItemsState extends State<ECommerceItems> {
   @override
   void initState() {
     super.initState();
+    appProvider = Provider.of<AppProvider>(context, listen: false);
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<ProductItem>>(
-        future: Provider.of<BEServices>(context, listen: false).getProducts(),
+        future: Provider.of<BEServices>(context, listen: true).getProducts(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final productList = snapshot.data;
+
+            appProvider.listItems = productList;
+
             return Scaffold(
               key: _scaffoldKey,
               endDrawer: ConstrainedBox(
@@ -200,20 +207,19 @@ class _ECommerceItemsState extends State<ECommerceItems> {
                               ),
                               itemBuilder: (context, index) {
                                 return ECommerceItem(
-                                  /*  selected: ResponsiveLayout.isIphone(context)
+                                    /*  selected: ResponsiveLayout.isIphone(context)
                               ? false
                               : index == 0, */
-                                  item: newValue.isEmpty
-                                      ? productList[index]
-                                      : displayList[index],
-                                  onPressed: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          ECommerceItemDescription(),
-                                    ),
-                                  ),
-                                );
+                                    item: newValue.isEmpty
+                                        ? productList[index]
+                                        : displayList[index],
+                                    onPressed: () {
+                                      setState(() {
+                                        appProvider.item = newValue.isEmpty
+                                            ? productList[index]
+                                            : displayList[index];
+                                      });
+                                    });
                               }),
                         ),
                       ),
@@ -223,7 +229,11 @@ class _ECommerceItemsState extends State<ECommerceItems> {
               ),
             );
           }
-          return Container();
+          return Container(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         });
   }
 

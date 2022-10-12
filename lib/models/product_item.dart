@@ -9,6 +9,7 @@ String productItemToJson(List<ProductItem> data) =>
 
 class ProductItem {
   ProductItem({
+    this.quantity,
     this.id,
     this.name,
     this.price,
@@ -19,6 +20,7 @@ class ProductItem {
     this.v,
   });
 
+  int quantity = 0;
   String id;
   String name;
   int price;
